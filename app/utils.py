@@ -63,6 +63,7 @@ def get_retriever():
         print("Loading existing vectorstore")
         vectorstore=FAISS.load_local(
             str(VECTORSTORE_PATH),
+            embeddings,
             allow_dangerous_deserialization=True
         )
     else:
