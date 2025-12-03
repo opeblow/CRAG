@@ -1,6 +1,8 @@
 import json
 import os
 from typing import List
+
+
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
@@ -9,11 +11,13 @@ from langgraph.prebuilt import tool_node
 from app.models import AgentState,DocumentGrade,Grade
 from app.tools import retriever,brave_search
 from app.prompts import GRADER_PROMPT,RAG_PROMPT
-
-llm=ChatOpenAI(model="gpt-4o-mini",temperature=0)
 from langchain_core.callbacks import CallbackManagerForChainRun
 from langchain_core.runnables import RunnableConfig
 from tenacity import retry,stop_after_attempt,wait_exponential,retry_if_exception_type
+from dotenv import load_dotenv
+load_dotenv()
+print(f"API Key loaded:{os.getenv("OPENAI_API_KEY")}")
+llm=ChatOpenAI(model="gpt-4o-mini",temperature=0)
 
 def with_retry(chain):
     return chain.with_retry(
@@ -24,12 +28,11 @@ def with_retry(chain):
     )
 
 grader_prompt=ChatPromptTemplate.from_template(GRADER_PROMPT)
-grader_chain=grader_prompt|llm|StrOutputParser()
-grader_chain=with_retry(grader_chain)
-
 generator_prompt=ChatPromptTemplate.from_template(RAG_PROMPT)
+
+grader_chain=grader_prompt|llm|StrOutputParser()
 generator_chain=generator_prompt|llm|StrOutputParser()
-generator_prompt=with_retry(generator_prompt)
+
 
 
 def retrieve(state:AgentState):

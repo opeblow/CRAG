@@ -19,12 +19,15 @@ while True:
 
     try:
         result=app.invoke({"question":question})
-        print("ANSWER")
-        print(result["answer"])
+        final_answer=result.get("answer","No answer generated")
         print("\nSOURCES")
-        for c in result.get("citations",[])[:10]:
+        citations=result.get("citations",[])
+        for c in citations[:10]:
             print(" . ",c)
-        print("\n" + "-" * 80 + "\n")
+        print("\n" +"-" *80)
+        print("BUILT BY MOBOLAJI OPEYEMI BOLATITO OBINA .CRAG SYSTEM(CORRECTIVE RETRIEVAL -AUGMENTED-GENERATION)")
+        print("-"*80 + "\n")
     except Exception as e:
-        print(f"Something went wrong:{e}")
+        print(F"Something went wrong:{e}")
         print("Try again!\n")
+
