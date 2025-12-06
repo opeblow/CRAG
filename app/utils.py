@@ -5,7 +5,11 @@ from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from unstructured.partition.auto import partition
 from langchain_community.vectorstores import FAISS
+<<<<<<< HEAD
 from langchain_huggingface import HuggingFaceEmbeddings
+=======
+from langchain_community.embeddings import HuggingFaceEmbeddings
+>>>>>>> fcbfb7a442b48ed5410d11dfcd9c572d9f24db3b
 
 
 embeddings=HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")

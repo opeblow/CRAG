@@ -1,7 +1,10 @@
 langchain
 langchain-community
 langchain-openai
+<<<<<<< HEAD
 langchain-huggingface
+=======
+>>>>>>> fcbfb7a442b48ed5410d11dfcd9c572d9f24db3b
 langgraph
 faiss-cpu
 sentence-transformers
@@ -9,4 +12,7 @@ unstructured[all-docs]
 beautifulsoup4
 python-dotenv
 pydantic
+<<<<<<< HEAD
 numpy<2
+=======
+>>>>>>> fcbfb7a442b48ed5410d11dfcd9c572d9f24db3b

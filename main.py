@@ -1,9 +1,12 @@
 import os
 from dotenv import load_dotenv
+<<<<<<< HEAD
 
 # Set tokenizers parallelism to avoid warnings
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
+=======
+>>>>>>> fcbfb7a442b48ed5410d11dfcd9c572d9f24db3b
 load_dotenv()
 from app.agent import app
 from app.models import AgentState
@@ -24,6 +27,7 @@ while True:
     try:
         result=app.invoke({"question":question})
         final_answer=result.get("answer","No answer generated")
+<<<<<<< HEAD
         print("\n" + "="*80)
         print("ANSWER:")
         print("="*80)
@@ -31,6 +35,9 @@ while True:
         print("\n" + "="*80)
         print("SOURCES:")
         print("="*80)
+=======
+        print("\nSOURCES")
+>>>>>>> fcbfb7a442b48ed5410d11dfcd9c572d9f24db3b
         citations=result.get("citations",[])
         for c in citations[:10]:
             print(" . ",c)
