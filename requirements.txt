@@ -1,0 +1,12 @@
+langchain
+langchain-community
+langchain-openai
+langchain-huggingface
+langgraph
+faiss-cpu
+sentence-transformers
+unstructured[all-docs]
+beautifulsoup4
+python-dotenv
+pydantic
+numpy<2
