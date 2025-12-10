@@ -96,7 +96,8 @@ def web_search(state:AgentState):
                     page_content=r.get("snippet",""),
                     metadata={
                         "source":r.get("link","unknown"),
-                        "title":r.get("title","Web Result")
+                        "title":r.get("title","Web Result"),
+                        "type":"web"
                     }
                 )
             )
@@ -116,15 +117,15 @@ def generate(state:AgentState):
             "question":state["question"]
         }
     )
-    citations=[]
-    for doc in state["documents"][:15]:
-        src=doc.metadata.get("source","unknown")
-        citations.append(f"[source:{src}]")
-    
-    return {
-        "answer":answer.strip(),
-        "citations":citations
-    }
+    sources={}
+    for d in state["documents"][:15]:
+        srs=d.metadata.get("source","unknown")
+        doc_type=d.metadata.get("type","local")
+        if srs not in sources:
+            label="web" if not doc_type=="web" else "local"
+            sources[srs]=f"[source:{srs} ({label})]"
+    citations=list(sources.values())
+    return {"answer":answer.strip(),"citations":citations}
       
 __all__ = ["retrieve","grade_documents","go_to_web","web_search","generate"]
     
