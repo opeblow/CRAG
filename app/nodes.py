@@ -122,7 +122,7 @@ def generate(state:AgentState):
         srs=d.metadata.get("source","unknown")
         doc_type=d.metadata.get("type","local")
         if srs not in sources:
-            label="web" if not doc_type=="web" else "local"
+            label="web" if  doc_type=="web" else "local"
             sources[srs]=f"[source:{srs} ({label})]"
     citations=list(sources.values())
     return {"answer":answer.strip(),"citations":citations}
