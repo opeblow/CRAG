@@ -11,7 +11,7 @@ async def start_chat():
                 "Built By Mobolaji Opeyemi Bolatito Obinna,Corrective RAG with local PDFs = Brave Search Fallback \n\n"
                 "Type your question:",
         author="CRAG SYSTEM"
-    )
+    ).send()
    
 
 @cl.on_message
