@@ -2,7 +2,7 @@ import chainlit as cl
 from dotenv import load_dotenv
 load_dotenv()
 from app.agent import app as crag_agent
-
+import traceback
 @cl.on_chat_start
 async def start_chat():
     cl.user_session.set("agent",crag_agent)
@@ -37,5 +37,10 @@ async def main(message:cl.Message):
         ).send()
 
     except Exception as e:
+        error_msg=f"Error occurred:**\n\n{str(e)}\n\nPlease try again or rephrase your question"
         msg.content=f"Something went wrong :{str(e)}"
         await msg.update()
+        print(f"Error in CRAG AGENT :{e}")
+        traceback.print_exc()
+
+        
